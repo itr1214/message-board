@@ -1,10 +1,6 @@
 class Message < ActiveRecord::Base
-      def change
-    create_table :messages do |t|
-      t.string :name
-      t.string :body
-
-      t.timestamps null: false
-    end
-  end
+    # 名前は必須入力かつ20文字以内
+    validates :name , length: { maximum: 20 } , presence: true
+    # 内容は必須入力かつ2文字以上30文字以下
+    validates :body , length: { minimum: 2, maximum: 30 } , presence: true
 end
